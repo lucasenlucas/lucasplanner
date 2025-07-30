@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Lucas Planner</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js" defer></script>
+</head>
+<body>
+  <div id="errorView" style="display: none; height: 100vh; background: #1F2937; color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+    ❌ Error code: 404 – Alleen toegankelijk via de PWA
+  </div>
 
+  <div id="appView" style="display: none;">
+    <!-- Je echte app-inhoud komt hier -->
+    <h1>Welkom bij Lucas Planner 📅</h1>
+    <p>Je bent ingelogd en zit in de juiste omgeving 😎</p>
+  </div>
+
+  <script>
+    const isInPWA = window.matchMedia('(display-mode: standalone)').matches
+      || window.navigator.standalone === true;
+
+    if (isInPWA) {
+      document.getElementById("appView").style.display = "block";
+    } else {
+      document.getElementById("errorView").style.display = "flex";
+    }
+  </script>
+</body>
+</html>
